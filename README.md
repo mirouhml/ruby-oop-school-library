@@ -1,17 +1,19 @@
 ![](https://img.shields.io/badge/Microverse-blueviolet)
 
-# Project name
+# OOP school library
 
-Description
+This is an implementation of a tool to record what books are in the library and who borrows them. The app that you will create will allow you to:
+
+- Add new students or teachers.
+- Add new books.
+- Save records of who borrowed a given book and when.
 
 ## Screenshots
 
 
 ## Built With
 
-- React
-- Redux
-- CSS
+- Ruby
 
 ## Live demo
 
@@ -24,19 +26,18 @@ To get a local copy up and running follow these simple example steps:
 - Change the current working directory to the location you want the cloned directory.
 - Enter the following:
 ```
-$ git clone git@github.com:mirouhml/mv-space-travellers.git.
+$ git clone git@github.com:mirouhml/ruby-oop-school-library.git.
 ```
 - Press Enter to create your local clone.
 - Navigate to the cloned repository by running:
 ```
-$ cd mv-space-travellers
+$ cd ruby-oop-school-library
 ```
 
 ### Prerequisites
 - GitHub
 - Git
-- React
-- Redux
+- Ruby
 
 
 ## Authors
