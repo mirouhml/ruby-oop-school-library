@@ -11,5 +11,5 @@ puts(person.age = (18))
 puts(person.can_use_services?)
 puts(person.play_hooky)
 
-teacher = Teacher.new(32, 'A', 'Ammar')
+teacher = Teacher.new(32, 'A', 'Ammar', parent_permission: true)
 puts(teacher.can_use_services?)
