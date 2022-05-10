@@ -133,8 +133,8 @@ class App
       book = @books[gets.chomp.to_i - 1]
       puts 'Select a person from the following list by number:'
       @people.each_with_index do |p, index|
-        puts "#{index + 1} | Name: #{p.name} - Age: #{p.age}" if p.is_a?(Student)
-        puts "#{index + 1} | Name: #{p.name} - Age: #{p.age}" if p.is_a?(Teacher)
+        puts "#{index + 1} | ID: #{p.id} - Name: #{p.name} - Age: #{p.age}" if p.is_a?(Student)
+        puts "#{index + 1} | ID: #{p.id} - Name: #{p.name} - Age: #{p.age}" if p.is_a?(Teacher)
       end
       person = @people[gets.chomp.to_i - 1]
       puts 'Date:'
@@ -150,12 +150,12 @@ class App
     if @rentals.length.zero?
       (puts 'No rentals found.')
     else
-      puts 'Select a person from the following list by number:'
-      @people.each_with_index do |person, index|
-        puts "#{index + 1} | Name: #{person.name} - Age: #{person.age}"
+      puts 'Select an ID from the following list:'
+      @people.each do |person|
+        puts "ID: #{person.id} - Name: #{person.name} - Age: #{person.age}"
       end
-      person = @people[gets.chomp.to_i - 1]
-      rental_list = @rentals.select { |rental| rental.person.id == person.id }
+      id = gets.chomp.to_i
+      rental_list = @rentals.select { |rental| rental.person.id == id }
       if rental_list.length.zero?
         (puts 'No rentals found for this person.')
       else
