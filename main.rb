@@ -1,10 +1,16 @@
 require_relative './person'
-require_relative './capitalize_decorator'
-require_relative './trimmer_decorator'
+require_relative './student'
+require_relative './classroom'
+require_relative './book'
 
-person = Person.new(22, 'maximilianus')
-puts(person.correct_name)
-capitalized_person = CapitalizeDecorator.new(person)
-puts(capitalized_person.correct_name)
-capitalized_trimmed_person = TrimmerDecorator.new(capitalized_person)
-puts(capitalized_trimmed_person.correct_name)
+classroom = Classroom.new('Math')
+student = Student.new(17, classroom, 'Ammar', parent_permission: false)
+
+puts(student.classroom.label)
+puts(classroom.students[0].name)
+
+person2 = Person.new(18, 'Joe')
+book = Book.new('Title', 'Author')
+
+book.add_rental('10-05-2022', person2)
+puts("#{book.rentals.first.person.name} rented #{book.rentals.first.book.title} on #{book.rentals.first.date}")
