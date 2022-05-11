@@ -5,6 +5,9 @@ class Person < Nameable
   attr_reader :id, :rentals
   attr_accessor :name, :age
 
+  # rubocop:disable Style/ClassVars
+  @@people = []
+  # rubocop:enable Style/ClassVars
   def initialize(age, name = 'unknown', parent_permission: true)
     super()
     @id = Random.rand(1..10_000)
@@ -12,6 +15,7 @@ class Person < Nameable
     @age = age
     @parent_permission = parent_permission
     @rentals = []
+    @@people.push(self)
   end
 
   def of_age?
