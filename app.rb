@@ -64,7 +64,7 @@ class App
   end
 
   def list_people
-    puts '*' * 70
+    puts '*' * -70
     if @people.length.zero?
       (puts 'People list is empty')
     else
