@@ -64,7 +64,7 @@ class App
   end
 
   def list_people
-    puts '*' * -70
+    puts '*' * 70
     if @people.length.zero?
       (puts 'People list is empty')
     else
@@ -80,7 +80,7 @@ class App
   def create_person
     puts '*' * 70
     option = ''
-    loop do
+    loop doo
       puts "Do you want to create a student (1) or a teacher (2)? [Input the number]\n"
       option = gets.chomp.to_i
       break if [1, 2].include?(option)
