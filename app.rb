@@ -80,9 +80,9 @@ class App
   def create_person
     puts '*' * 70
     option = ''
-    loop doo
+    loop do
       puts "Do you want to create a student (1) or a teacher (2)? [Input the number]\n"
-      option = gets.chomp.to_i
+      option = gets.chomp
       break if [1, 2].include?(option)
     end
     puts 'Name:'
