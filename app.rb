@@ -51,7 +51,7 @@ class App
   end
 
   def list_books
-    puts '*' * 70
+    seperator
     if @books.length.zero?
       (puts 'Book list is empty')
     else
@@ -60,11 +60,11 @@ class App
         puts "#{index + 1} | #{book.title} - By #{book.author}"
       end
     end
-    puts '*' * 70
+    seperator
   end
 
   def list_people
-    puts '*' * 70
+    seperator
     if @people.length.zero?
       (puts 'People list is empty')
     else
@@ -74,11 +74,11 @@ class App
         puts "[Teacher] #{index + 1} | Name: #{person.name} - Age: #{person.age}" if person.is_a?(Teacher)
       end
     end
-    puts '*' * 70
+    seperator
   end
 
   def create_person
-    puts '*' * 70
+    seperator
     option = ''
     loop do
       puts "Do you want to create a student (1) or a teacher (2)? [Input the number]\n"
@@ -91,36 +91,44 @@ class App
     age = gets.chomp.to_i
     case option
     when 1
-      puts 'Has parent permission? [Y/N]'
-      permission = gets.chomp.downcase
-      permission = true if permission == 'y'
-      permission = false if permission == 'n'
-      puts 'Classroom:'
-      classroom = gets.chomp
-      student = Student.new(age, classroom, name, parent_permission: permission)
-      puts "Student #{student.name} has been created successfully."
+      create_student(name, age)
     when 2
-      puts 'Specialization:'
-      specialization = gets.chomp
-      teacher = Teacher.new(age, specialization, name)
-      puts "Teacher #{teacher.name} has been created successfully."
+      create_teacher(name, age)
     end
-    puts '*' * 70
+    seperator
+  end
+
+  def create_student(name, age)
+    puts 'Has parent permission? [Y/N]'
+    permission = gets.chomp.downcase
+    permission = true if permission == 'y'
+    permission = false if permission == 'n'
+    puts 'Classroom:'
+    classroom = gets.chomp
+    student = Student.new(age, classroom, name, parent_permission: permission)
+    puts "Student #{student.name} has been created successfully."
+  end
+
+  def create_teacher(name, age)
+    puts 'Specialization:'
+    specialization = gets.chomp
+    teacher = Teacher.new(age, specialization, name)
+    puts "Teacher #{teacher.name} has been created successfully."
   end
 
   def create_book
-    puts '*' * 70
+    seperator
     puts 'Title:'
     title = gets.chomp
     puts 'Author:'
     author = gets.chomp
     book = Book.new(title, author)
     puts "Book #{book.title} has been created successfully."
-    puts '*' * 70
+    seperator
   end
 
   def create_rental
-    puts '*' * 70
+    seperator
     if @books.length.zero?
       (puts 'The book list is empty please create a book first.')
     elsif @people.length.zero?
@@ -142,11 +150,11 @@ class App
       Rental.new(date, book, person)
       puts('Rental created successfully.')
     end
-    puts '*' * 70
+    seperator
   end
 
   def list_rentals
-    puts '*' * 70
+    seperator
     if @rentals.length.zero?
       (puts 'No rentals found.')
     else
@@ -165,6 +173,10 @@ class App
         end
       end
     end
+    seperator
+  end
+
+  def seperator
     puts '*' * 70
   end
 end
