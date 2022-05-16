@@ -16,8 +16,4 @@ class Student < Person
     @classroom = Classroom.new(classroom)
     check.call
   end
-
-  def play_hooky
-    '¯\(ツ)/¯'
-  end
 end

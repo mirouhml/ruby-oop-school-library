@@ -10,6 +10,8 @@ This is an implementation of a tool to record what books are in the library and 
 
 ## Screenshots
 
+![image](https://user-images.githubusercontent.com/20567503/168591574-037c68a6-030e-4270-8372-d4929b9a8ce0.png)
+
 
 ## Built With
 
@@ -40,7 +42,7 @@ $ cd ruby-oop-school-library
 - Ruby
 
 
-## Authors
+## Author
 
 👤 **Mirouhml**
 
