@@ -42,7 +42,7 @@ $ cd ruby-oop-school-library
 - Ruby
 
 
-## Authors
+## Author
 
 👤 **Mirouhml**
 
