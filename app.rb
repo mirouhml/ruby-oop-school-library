@@ -50,15 +50,32 @@ class App
     end
   end
 
+  def display_books
+    @books.each_with_index do |b, index|
+      puts "#{index + 1} | #{b.title} - By #{b.author}"
+    end
+  end
+
+  def display_people
+    @people.each_with_index do |p, index|
+      puts "#{index + 1} [Student] | ID: #{p.id} - Name: #{p.name} - Age: #{p.age}" if p.is_a?(Student)
+      puts "#{index + 1} [Teacher] | ID: #{p.id} - Name: #{p.name} - Age: #{p.age}" if p.is_a?(Teacher)
+    end
+  end
+
+  def display_rentals(rental_list)
+    rental_list.each_with_index do |rental, index|
+      puts "#{index + 1} | Date: #{rental.date}, Book: #{rental.book.title}- By the author: #{rental.book.author}, Rented by: #{rental.person.name}"
+    end
+  end
+
   def list_books
     seperator
     if @books.length.zero?
       (puts 'Book list is empty')
     else
       puts 'Book list:'
-      @books.each_with_index do |book, index|
-        puts "#{index + 1} | #{book.title} - By #{book.author}"
-      end
+      display_books
     end
     seperator
   end
@@ -69,12 +86,27 @@ class App
       (puts 'People list is empty')
     else
       puts 'People list:'
-      @people.each_with_index do |person, index|
-        puts "[Student] #{index + 1} | Name: #{person.name} - Age: #{person.age}" if person.is_a?(Student)
-        puts "[Teacher] #{index + 1} | Name: #{person.name} - Age: #{person.age}" if person.is_a?(Teacher)
-      end
+      display_people
     end
     seperator
+  end
+
+  def create_student(name, age)
+    puts 'Has parent permission? [Y/N]'
+    permission = gets.chomp.downcase
+    permission = true if permission == 'y'
+    permission = false if permission == 'n'
+    puts 'Classroom:'
+    classroom = gets.chomp
+    student = Student.new(age, classroom, name, parent_permission: permission)
+    puts "Student #{student.name} has been created successfully."
+  end
+
+  def create_teacher(name, age)
+    puts 'Specialization:'
+    specialization = gets.chomp
+    teacher = Teacher.new(age, specialization, name)
+    puts "Teacher #{teacher.name} has been created successfully."
   end
 
   def create_person
@@ -98,24 +130,6 @@ class App
     seperator
   end
 
-  def create_student(name, age)
-    puts 'Has parent permission? [Y/N]'
-    permission = gets.chomp.downcase
-    permission = true if permission == 'y'
-    permission = false if permission == 'n'
-    puts 'Classroom:'
-    classroom = gets.chomp
-    student = Student.new(age, classroom, name, parent_permission: permission)
-    puts "Student #{student.name} has been created successfully."
-  end
-
-  def create_teacher(name, age)
-    puts 'Specialization:'
-    specialization = gets.chomp
-    teacher = Teacher.new(age, specialization, name)
-    puts "Teacher #{teacher.name} has been created successfully."
-  end
-
   def create_book
     seperator
     puts 'Title:'
@@ -135,15 +149,10 @@ class App
       (puts 'The people list is empty please add a person first.')
     else
       puts 'Select a book from the following list by number:'
-      @books.each_with_index do |b, index|
-        puts "#{index + 1} | #{b.title} - By #{b.author}"
-      end
+      display_books
       book = @books[gets.chomp.to_i - 1]
       puts 'Select a person from the following list by number:'
-      @people.each_with_index do |p, index|
-        puts "#{index + 1} | ID: #{p.id} - Name: #{p.name} - Age: #{p.age}" if p.is_a?(Student)
-        puts "#{index + 1} | ID: #{p.id} - Name: #{p.name} - Age: #{p.age}" if p.is_a?(Teacher)
-      end
+      display_people
       person = @people[gets.chomp.to_i - 1]
       puts 'Date:'
       date = gets.chomp
@@ -159,18 +168,14 @@ class App
       (puts 'No rentals found.')
     else
       puts 'Select an ID from the following list:'
-      @people.each do |person|
-        puts "ID: #{person.id} - Name: #{person.name} - Age: #{person.age}"
-      end
+      display_people
       id = gets.chomp.to_i
       rental_list = @rentals.select { |rental| rental.person.id == id }
       if rental_list.length.zero?
         (puts 'No rentals found for this person.')
       else
         puts 'Rental list:'
-        rental_list.each_with_index do |rental, index|
-          puts "#{index + 1} | Date: #{rental.date}, Book: #{rental.book.title}- By the author: #{rental.book.author}, Rented by: #{rental.person.name}"
-        end
+        display_rentals rental_list
       end
     end
     seperator
