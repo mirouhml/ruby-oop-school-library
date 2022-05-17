@@ -3,13 +3,9 @@ require_relative './person'
 class Teacher < Person
   attr_reader :specialization
 
-  def initialize(age, specialization, name = 'unknown', id = Random.rand(1..10_000), parent_permission: true)
-    super age, name, id, parent_permission: parent_permission
+  def initialize(age, specialization, name = 'unknown', id = Random.rand(1..10_000))
+    super age, name, id
     @specialization = specialization
-  end
-
-  def can_use_services?
-    true
   end
 
   def self.store_teachers
@@ -28,7 +24,7 @@ class Teacher < Person
     file = File.open('data/teachers.json', 'r')
     file_json = JSON.parse(file.read)
     file_json.each_key do |key|
-      new(file_json[key]['age'], file_json[key]['specialization'], file_json[key]['name'], file_json[key]['id'], parent_permission: true)
+      new(file_json[key]['age'], file_json[key]['specialization'], file_json[key]['name'], file_json[key]['id'])
     end
   end
 end

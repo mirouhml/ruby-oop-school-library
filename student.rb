@@ -5,7 +5,8 @@ class Student < Person
   attr_reader :classroom
 
   def initialize(age, classroom = 'Default', name = 'unknown', id = Random.rand(1..10_000), parent_permission: true)
-    super age, name, id, parent_permission: parent_permission
+    super age, name, id
+    @parent_permission = parent_permission
     @classroom = Classroom.new(classroom)
     check = -> { @classroom.students.push(self) unless @classroom.students.include?(self) }
     check.call
@@ -14,6 +15,18 @@ class Student < Person
   def classroom=(classroom)
     @classroom = Classroom.new(classroom)
     check.call
+  end
+
+  def of_age?
+    return true if @age > 17
+
+    false
+  end
+
+  def can_use_services?
+    return true if @parent_permission || of_age?
+
+    false
   end
 
   def self.store_students
@@ -39,4 +52,6 @@ class Student < Person
           parent_permission: file_json[key]['parent_permission'])
     end
   end
+
+  private :of_age?
 end

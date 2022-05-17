@@ -8,26 +8,13 @@ class Person < Nameable
   # rubocop:disable Style/ClassVars
   @@people = []
   # rubocop:enable Style/ClassVars
-  def initialize(age, name = 'unknown', id = Random.rand(1..10_000), parent_permission: true)
+  def initialize(age, name = 'unknown', id = Random.rand(1..10_000))
     super()
     @id = id
     @name = name
     @age = age
-    @parent_permission = parent_permission
     @rentals = []
     @@people.push(self)
-  end
-
-  def of_age?
-    return true if @age > 17
-
-    false
-  end
-
-  def can_use_services?
-    return true if @parent_permission || of_age?
-
-    false
   end
 
   def correct_name
@@ -44,5 +31,4 @@ class Person < Nameable
     @@people.each { |p| person = p if p.id == id }
     person
   end
-  private :of_age?
 end
