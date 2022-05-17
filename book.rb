@@ -25,14 +25,14 @@ class Book
       books[index] = { :title => b.title, :author => b.author}
     end
     books = books.to_json
-    File.open("data/books.json","w") do |f|
+    File.open('data/books.json','w') do |f|
       f.write(books)
     end
     books
   end
 
   def self.restore_books
-    if File.exist?("data/books.json") 
+    if File.exist?('data/books.json') && !File.zero?('data/books.json')
       file = File.open('data/books.json','r')
       file_json = JSON.parse(file.read)
       file_json.each_key { |key| new(file_json[key]['title'], file_json[key]['author']) }

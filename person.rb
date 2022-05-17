@@ -8,9 +8,9 @@ class Person < Nameable
   # rubocop:disable Style/ClassVars
   @@people = []
   # rubocop:enable Style/ClassVars
-  def initialize(age, name = 'unknown', parent_permission: true)
+  def initialize(age, name = 'unknown', id = Random.rand(1..10_000), parent_permission: true)
     super()
-    @id = Random.rand(1..10_000)
+    @id = id
     @name = name
     @age = age
     @parent_permission = parent_permission
