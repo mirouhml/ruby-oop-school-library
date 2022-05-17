@@ -2,7 +2,7 @@
 
 # OOP school library
 
-This is an implementation of a tool to record what books are in the library and who borrows them. The app that you will create will allow you to:
+This is an implementation of a tool to record what books are in the library and who has borrowed them. The app that you will create will allow you to:
 
 - Add new students or teachers.
 - Add new books.
