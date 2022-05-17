@@ -3,12 +3,16 @@ require_relative './student'
 require_relative './book'
 require_relative './teacher'
 require_relative './rental'
+require 'json'
 
 class App
   def initialize
     @books = Book.class_variable_get(:@@books)
     @people = Person.class_variable_get(:@@people)
     @rentals = Rental.class_variable_get(:@@rentals)
+    Book.restore_books
+    Student.restore_students
+    Teacher.restore_teachers
   end
 
   def run
@@ -24,7 +28,10 @@ class App
           7 | Exit"
       puts "\nSelect an option: "
       user_input = gets.chomp.to_i
-      break if user_input >= 7
+      if user_input >= 7
+        store_data
+        break
+      end
 
       puts "\n"
       options user_input
@@ -183,5 +190,13 @@ class App
 
   def seperator
     puts '*' * 70
+  end
+
+  def store_data
+    puts 'Saving...'
+    puts Book.store_books
+    puts Student.store_students
+    puts Teacher.store_teachers
+    puts 'Done!'
   end
 end
