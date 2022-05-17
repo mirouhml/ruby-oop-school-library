@@ -196,10 +196,10 @@ class App
 
   def store_data
     puts 'Saving...'
-    puts Book.store_books
-    puts Student.store_students
-    puts Teacher.store_teachers
-    puts Rental.store_rentals
+    Book.store_books
+    Student.store_students
+    Teacher.store_teachers
+    Rental.store_rentals
     puts 'Done!'
   end
 end
