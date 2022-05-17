@@ -19,20 +19,24 @@ class Student < Person
   def self.store_students
     students = {}
     @@people.each_with_index do |p, index|
-      students[index] = {:id => p.id, :name => p.name, :age => p.age, :parent_permission => p.parent_permission, :classroom => p.classroom.label } if p.is_a?(Student)
+      if p.is_a?(Student)
+        students[index] =
+          { id: p.id, name: p.name, age: p.age, parent_permission: p.parent_permission, classroom: p.classroom.label }
+      end
     end
     students = students.to_json
-    File.open('data/students.json','w') do |f|
-      f.write(students)
-    end
+    File.write('data/students.json', students)
     students
   end
 
   def self.restore_students
-    if File.exist?('data/students.json') && !File.zero?('data/students.json')
-      file = File.open('data/students.json','r')
-      file_json = JSON.parse(file.read)
-      file_json.each_key { |key| new(file_json[key]['age'], file_json[key]['classroom'], file_json[key]['name'], file_json[key]['id'], parent_permission: file_json[key]['parent_permission']) }
+    return unless File.exist?('data/students.json') && !File.zero?('data/students.json')
+
+    file = File.open('data/students.json', 'r')
+    file_json = JSON.parse(file.read)
+    file_json.each_key do |key|
+      new(file_json[key]['age'], file_json[key]['classroom'], file_json[key]['name'], file_json[key]['id'],
+          parent_permission: file_json[key]['parent_permission'])
     end
   end
 end

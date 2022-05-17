@@ -39,5 +39,10 @@ class Person < Nameable
     @rentals.push(rental)
   end
 
+  def self.get_person(id)
+    person = ''
+    @@people.each { |p| person = p if p.id == id }
+    person
+  end
   private :of_age?
 end

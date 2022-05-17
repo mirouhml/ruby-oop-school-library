@@ -13,7 +13,7 @@ class App
     Book.restore_books
     Student.restore_students
     Teacher.restore_teachers
-    Rental.restore_rentals(@books,@people)
+    Rental.restore_rentals(@books, @people)
   end
 
   def run
