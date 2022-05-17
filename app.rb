@@ -13,6 +13,7 @@ class App
     Book.restore_books
     Student.restore_students
     Teacher.restore_teachers
+    Rental.restore_rentals(@books,@people)
   end
 
   def run
@@ -163,7 +164,8 @@ class App
       person = @people[gets.chomp.to_i - 1]
       puts 'Date:'
       date = gets.chomp
-      Rental.new(date, book, person)
+      rental = Rental.new(date, book, person)
+      puts rental.person.id
       puts('Rental created successfully.')
     end
     seperator
@@ -197,6 +199,7 @@ class App
     puts Book.store_books
     puts Student.store_students
     puts Teacher.store_teachers
+    puts Rental.store_rentals
     puts 'Done!'
   end
 end
