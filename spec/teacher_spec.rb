@@ -1,4 +1,4 @@
-require './teacher'
+require_relative '../teacher'
 
 describe Teacher do
   context 'When testing the Teacher class' do
@@ -15,7 +15,7 @@ describe Teacher do
       expect(teacher.name).to eq name
     end
 
-    it 'should return parent permission for teacher' do
+    it 'should return the specialization of the teacher' do
       expect(teacher.specialization).to eq specialization
     end
   end
